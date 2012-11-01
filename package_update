@@ -9,12 +9,12 @@ ruby_packages_final=`echo "$ruby1_packages $ruby2_packages"`
 
 #Ensure the packages aren't already on hold
 for package in $ruby_packages_final; do
-	sudo apt-mark hold $package
+	sudo aptitude unhold $package
 	done
 
 #Put the ruby packages on hold
 for package in $ruby_packages_final; do
-	sudo apt-mark hold $package
+	sudo aptitude hold $package
 	done
 
 #MYSQL
@@ -24,12 +24,12 @@ mysql_packages_final=`echo "$mysql1_packages $mysql2_packages"`
 
 #Ensure the packages aren't already on hold
 for package in $mysql_packages_final; do
-	sudo apt-mark hold $package
+	sudo aptitude unhold $package
 	done
 
 #Put the mysql packages on hold
 for package in $mysql_packages_final; do
-	sudo apt-mark hold $package
+	sudo aptitude hold $package
 	done
 
 #Update the sources list
