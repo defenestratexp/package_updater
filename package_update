@@ -7,6 +7,11 @@ ruby1_packages=`sudo aptitude search ruby | grep '^i' | awk '{print $2}' | grep 
 ruby2_packages=`sudo aptitude search ruby | grep '^i' | awk '{print $3}' | grep -v '^\-'`
 ruby_packages_final=`echo "$ruby1_packages $ruby2_packages"`
 
+#Ensure the packages aren't already on hold
+for package in $ruby_packages_final; do
+	sudo apt-mark hold $package
+	done
+
 #Put the ruby packages on hold
 for package in $ruby_packages_final; do
 	sudo apt-mark hold $package
@@ -16,6 +21,11 @@ for package in $ruby_packages_final; do
 mysql1_packages=`sudo aptitude search mysql | grep '^i' | awk '{print $2}' | grep -v '^A'`
 mysql2_packages=`sudo aptitude search mysql | grep '^i' | awk '{print $3}' | grep -v '^\-'`
 mysql_packages_final=`echo "$mysql1_packages $mysql2_packages"`
+
+#Ensure the packages aren't already on hold
+for package in $mysql_packages_final; do
+	sudo apt-mark hold $package
+	done
 
 #Put the mysql packages on hold
 for package in $mysql_packages_final; do
