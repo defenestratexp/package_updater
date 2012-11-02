@@ -33,7 +33,7 @@ for package in $mysql_packages_final; do
 	done
 
 #Update the sources list
-sudo apt-get update
+sudo aptitude update
 
 #Update the system
-sudo apt-get upgrade
+sudo aptitude upgrade
