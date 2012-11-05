@@ -1,0 +1,21 @@
+#!/bin/bash
+
+#Place holds on all mysql-related packages
+for package in `sudo aptitude search ~imysql | awk '{print $2}'`
+	do 
+	sudo aptitude hold $package
+	done
+
+#Place holds on all ruby-related packages
+for package in `sudo aptitude search ~iruby | awk '{print #2}'`
+	do
+	sudo aptitude hold $package
+
+#Update the database
+sudo aptitude update
+
+#Upgrade non-ruby and non-mysql packages
+sudo aptitude safe-upgrade
+
+#Remove unused packages
+sudo aptitude clean --purge-unused
