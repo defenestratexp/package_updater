@@ -1,0 +1,28 @@
+#!/bin/bash
+
+#Place holds on all mysql-related packages
+for package in `sudo aptitude search ~imysql | awk '{print $2}'`
+	do 
+	if [ -n "$package" ];then
+	sudo aptitude hold $package
+	fi
+	done
+
+#Place holds on all ruby-related packages
+for package in `sudo aptitude search ~iruby | awk '{print #2}'`
+	do
+	if [ -n "$package" ];then
+	sudo aptitude hold $package
+	fi
+	done
+
+#Verification
+#For mysql
+echo "MySQL"
+sudo aptitude search ~imysql
+
+#For ruby
+echo "Ruby"
+sudo aptitude search ~iruby
+
+
