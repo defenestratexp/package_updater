@@ -1,5 +1,13 @@
 #!/bin/bash
 
+#Status before holds
+echo "mysql"
+sudo aptitude search ~imysql
+
+echo "ruby"
+sudo aptitude search ~iruby
+
+#Holding process
 #Place holds on all mysql-related packages
 for package in `sudo aptitude search ~imysql | awk '{print $2}'`
 	do 
@@ -24,5 +32,3 @@ sudo aptitude search ~imysql
 #For ruby
 echo "Ruby"
 sudo aptitude search ~iruby
-
-
