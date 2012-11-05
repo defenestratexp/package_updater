@@ -3,13 +3,34 @@
 #Place holds on all mysql-related packages
 for package in `sudo aptitude search ~imysql | awk '{print $2}'`
 	do 
+	echo "From $0: Placing hold on $package"
 	sudo aptitude hold $package
+	#Verification
+	package_status=`sudo aptitude search ~imysql | grep $package`
+	if [ "$package_status" == ih* ]; then
+		echo "$0 placed a hold on $package"
+	else
+		echo "$0 attempted to hold $package, but it's status reads: $package_status"
+		exit
+	fi 
+	
 	done
 
 #Place holds on all ruby-related packages
 for package in `sudo aptitude search ~iruby | awk '{print #2}'`
 	do
+	echo "From $0: Placing hold on $package"
 	sudo aptitude hold $package
+	#Verification
+        package_status=`sudo aptitude search ~imysql | grep $package`
+        if [ "$package_status" == ih* ]; then
+                echo "$0 placed a hold on $package"
+        else
+                echo "$0 attempted to hold $package, but it's status reads: $package_status"
+                exit
+        fi 
+
+	done
 
 #Update the database
 sudo aptitude update
