@@ -3,6 +3,7 @@
 #Place holds on all mysql-related packages
 for package in `sudo aptitude search ~imysql | awk '{print $2}'`
 	do 
+	if [ -n "$package" ];then
 	echo "From $0: Placing hold on $package"
 	sudo aptitude hold $package
 	#Verification
@@ -12,13 +13,18 @@ for package in `sudo aptitude search ~imysql | awk '{print $2}'`
 	else
 		echo "$0 attempted to hold $package, but it's status reads: $package_status"
 		exit
-	fi 
+	fi
+	else
+	echo "From $0: mysql package variable was empty"
+	exit 
+	fi
 	
 	done
 
 #Place holds on all ruby-related packages
 for package in `sudo aptitude search ~iruby | awk '{print #2}'`
 	do
+	if [ -n "$package" ]; then
 	echo "From $0: Placing hold on $package"
 	sudo aptitude hold $package
 	#Verification
@@ -29,6 +35,10 @@ for package in `sudo aptitude search ~iruby | awk '{print #2}'`
                 echo "$0 attempted to hold $package, but it's status reads: $package_status"
                 exit
         fi 
+	else
+	echo "From $0: ruby package variable was empty"
+	exit
+	fi
 
 	done
 
